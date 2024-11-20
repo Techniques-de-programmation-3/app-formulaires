@@ -12,6 +12,6 @@ form {
     justify-content: space-evenly;
 }
 
-mat-form-field {
+form * {
     width: 40%; 
 }

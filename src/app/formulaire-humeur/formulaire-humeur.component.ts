@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 
 @Component({
@@ -9,5 +10,5 @@ import {MatSliderModule} from '@angular/material/slider';
   styleUrl: './formulaire-humeur.component.css'
 })
 export class FormulaireHumeurComponent {
-  
+
 }
