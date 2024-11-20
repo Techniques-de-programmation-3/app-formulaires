@@ -1,0 +1,41 @@
+<form>
+    <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput name="nom" required minlength="2" maxlength="20">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input matInput name="prenom" required minlength="2" maxlength="20">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Courriel</mat-label>
+        <input matInput name="courriel" type="email" required >
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Sexe</mat-label>
+        <mat-select required>
+            <option value="">Choisir le sexe</option>
+            <option value="femme">Femme</option>
+            <option value="homme">Homme</option>
+            <option value="autre">Autre</option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Date de naissance</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/JJ/AAAA</mat-hint>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Nombre d'enfants</mat-label>
+        <input matInput name="nbEnfants" type="number" required >
+    </mat-form-field>
+
+</form>
+  

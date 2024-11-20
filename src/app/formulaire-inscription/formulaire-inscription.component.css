@@ -1,0 +1,17 @@
+:host {
+    display: block;
+    margin: 20px;
+    border : 1px dotted #000; 
+}
+
+form {
+    margin: 20px auto;
+    width: 800px; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+mat-form-field {
+    width: 40%; 
+}
