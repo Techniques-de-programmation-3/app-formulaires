@@ -1,7 +1,18 @@
-
 <div>
     <span>Indice d'humeur</span>
     <mat-slider min="-10" max="10" step="1" >
-        <input matSliderThumb name="humeur" value="0" >
+        <input matSliderThumb value="0" [(ngModel)]="indiceHumeur">
     </mat-slider>
+
+    {{indiceHumeur}}
+    
+    <p>
+        @if(indiceHumeur < 0) {
+            Je pleure....
+        } @else if(indiceHumeur == 0) {
+            Je suis neutre
+        } @else  {
+            Je suis de bonne humeur
+        }
+    </p>
 </div>

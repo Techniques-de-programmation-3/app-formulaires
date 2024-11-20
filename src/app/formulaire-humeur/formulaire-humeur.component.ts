@@ -5,10 +5,10 @@ import {MatSliderModule} from '@angular/material/slider';
 @Component({
   selector: 'app-formulaire-humeur',
   standalone: true,
-  imports: [MatSliderModule],
+  imports: [MatSliderModule, FormsModule],
   templateUrl: './formulaire-humeur.component.html',
   styleUrl: './formulaire-humeur.component.css'
 })
 export class FormulaireHumeurComponent {
-
+  indiceHumeur = 0;
 }

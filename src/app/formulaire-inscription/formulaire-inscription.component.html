@@ -1,41 +1,77 @@
-<form>
+<form #formulaireInscription="ngForm">
     <mat-form-field>
         <mat-label>Nom</mat-label>
-        <input matInput name="nom" required minlength="2" maxlength="20">
+        <input matInput name="nom" required minlength="2" maxlength="20" [(ngModel)]="personne.nom" #nom="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Prénom</mat-label>
-        <input matInput name="prenom" required minlength="2" maxlength="20">
+        <input matInput name="prenom" required [(ngModel)]="personne.prenom" #prenom="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Courriel</mat-label>
-        <input matInput name="courriel" type="email" required >
+        <input matInput name="courriel" type="email" required email [(ngModel)]="personne.courriel" #courriel="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Sexe</mat-label>
-        <mat-select required>
-            <option value="">Choisir le sexe</option>
-            <option value="femme">Femme</option>
-            <option value="homme">Homme</option>
-            <option value="autre">Autre</option>
+        <mat-select required name="sexe" [(ngModel)]="personne.sexe" #sexe="ngModel">
+            <mat-option value="">Choisir le sexe</mat-option>
+            <mat-option value="femme">Femme</mat-option>
+            <mat-option value="homme">Homme</mat-option>
+            <mat-option value="autre">Autre</mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Date de naissance</mat-label>
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" name="dateNaissance" [(ngModel)]="personne.dateNaissance" #dateNaissance="ngModel">
         <mat-hint>MM/JJ/AAAA</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-
     <mat-form-field>
         <mat-label>Nombre d'enfants</mat-label>
-        <input matInput name="nbEnfants" type="number" required >
+        <input matInput name="nbEnfants" type="number" required [(ngModel)]="personne.nbEnfants" #nbEnfants="ngModel">
     </mat-form-field>
+
+    <div class="errors">
+        @if(nom.invalid && nom.errors?.['required'] && nom.dirty) {
+            <p>Le nom est requis</p> 
+        }
+
+        @if(nom.invalid && nom.errors?.['minlength'] && nom.dirty) {
+            <p>Le nom doit avoir au minimum 2 caractères</p> 
+        }
+
+        @if(nom.invalid && nom.errors?.['maxlength'] && nom.dirty) {
+            <p>Le nom doit avoir au maximum 20 caractères</p> 
+        }
+
+        @if(prenom.invalid && prenom.errors?.['required'] &&  prenom.dirty) {
+            <p>Le prénom est requis</p> 
+        }
+
+        @if(courriel.invalid && courriel.errors?.['required'] && courriel.dirty) {
+            <p>Le courriel est requis</p> 
+        }
+
+        @if(courriel.invalid && courriel.errors?.['email'] && courriel.dirty) {
+            <p>Le courriel est invalide</p> 
+        }
+
+        @if(sexe.invalid && sexe.errors?.['required'] && sexe.dirty) {
+            <p>Le sexe est requis</p> 
+        }
+
+        @if(nbEnfants.invalid && nbEnfants.errors?.['required'] && nbEnfants.dirty) {
+            <p>Le nombre d'enfants est requis</p> 
+        }
+    </div>
+
+    <button [disabled]="formulaireInscription.invalid" (click)="validerInformations()">Afficher les informations dans la console</button>
 
 </form>
   

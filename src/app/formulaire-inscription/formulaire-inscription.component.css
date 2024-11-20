@@ -12,6 +12,13 @@ form {
     justify-content: space-evenly;
 }
 
-form * {
+mat-form-field {
     width: 40%; 
+}
+
+.errors {
+    width:100%;
+    text-align: center;
+    font-size: 80%;
+    color: red;
 }
