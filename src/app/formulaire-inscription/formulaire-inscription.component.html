@@ -26,7 +26,7 @@
 
     <mat-form-field>
         <mat-label>Date de naissance</mat-label>
-        <input matInput [matDatepicker]="picker" name="dateNaissance" [(ngModel)]="personne.dateNaissance" #dateNaissance="ngModel">
+        <input matInput [matDatepicker]="picker" name="dateNaissance" [(ngModel)]="personne.dateNaissance" [max]="dateDujour" #dateNaissance="ngModel">
         <mat-hint>MM/JJ/AAAA</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -34,19 +34,16 @@
 
     <mat-form-field>
         <mat-label>Nombre d'enfants</mat-label>
-        <input matInput name="nbEnfants" type="number" required [(ngModel)]="personne.nbEnfants" #nbEnfants="ngModel">
+        <input matInput name="nbEnfants" type="number" required [(ngModel)]="personne.nbEnfants" min="0" #nbEnfants="ngModel">
     </mat-form-field>
 
     <div class="errors">
+        
         @if(nom.invalid && nom.errors?.['required'] && nom.dirty) {
             <p>Le nom est requis</p> 
-        }
-
-        @if(nom.invalid && nom.errors?.['minlength'] && nom.dirty) {
+        } @else if(nom.invalid && nom.errors?.['minlength'] && nom.dirty) {
             <p>Le nom doit avoir au minimum 2 caractères</p> 
-        }
-
-        @if(nom.invalid && nom.errors?.['maxlength'] && nom.dirty) {
+        } @else if(nom.invalid && nom.errors?.['maxlength'] && nom.dirty) {
             <p>Le nom doit avoir au maximum 20 caractères</p> 
         }
 
@@ -56,9 +53,7 @@
 
         @if(courriel.invalid && courriel.errors?.['required'] && courriel.dirty) {
             <p>Le courriel est requis</p> 
-        }
-
-        @if(courriel.invalid && courriel.errors?.['email'] && courriel.dirty) {
+        } @else if(courriel.invalid && courriel.errors?.['email'] && courriel.dirty) {
             <p>Le courriel est invalide</p> 
         }
 
@@ -66,8 +61,16 @@
             <p>Le sexe est requis</p> 
         }
 
+        @if(dateNaissance.invalid && dateNaissance.errors?.['required'] && dateNaissance.dirty) {
+            <p>La date de naissance est est requise</p> 
+        } @else if(dateNaissance.invalid && dateNaissance.dirty) {
+            <p>La date est invalide</p>
+        }
+
         @if(nbEnfants.invalid && nbEnfants.errors?.['required'] && nbEnfants.dirty) {
             <p>Le nombre d'enfants est requis</p> 
+        } @else if(nbEnfants.invalid && nbEnfants.errors?.['min'] && nbEnfants.dirty) {
+            <p>Le nombre d'enfants doit être supérieur ou égal à 0</p> 
         }
     </div>
 

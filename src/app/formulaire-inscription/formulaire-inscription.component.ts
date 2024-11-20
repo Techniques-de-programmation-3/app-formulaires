@@ -17,6 +17,8 @@ import { Personne } from '../personne';
   styleUrl: './formulaire-inscription.component.css'
 })
 export class FormulaireInscriptionComponent {
+  readonly dateDujour = new Date(); 
+
   personne:Personne = {
     nom: "", prenom: "", courriel:"", dateNaissance:"", nbEnfants:0, sexe:""
   }
